@@ -1,0 +1,28 @@
+{
+  "name": "nodeSequelize",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dattaramsawant/nodeSequelize.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dattaramsawant/nodeSequelize/issues"
+  },
+  "homepage": "https://github.com/dattaramsawant/nodeSequelize#readme",
+  "dependencies": {
+    "body-parser": "^1.20.0",
+    "express": "^4.18.1",
+    "nodemon": "^2.0.16",
+    "pg": "^8.7.3",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.20.1"
+  }
+}

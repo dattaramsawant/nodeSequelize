@@ -1,0 +1,7 @@
+{
+    "username": "postgres",
+    "password": "Datta@123",
+    "database": "node-sequelize",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+}
