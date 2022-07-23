@@ -16,6 +16,9 @@ db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
 db.users = require('./user')(sequelize,DataTypes)
+db.posts = require('./post')(sequelize,DataTypes)
+db.tags = require('./tag')(sequelize,DataTypes)
+db.employee = require('./employee')(sequelize,DataTypes)
 
 db.sequelize.sync()
     .then(()=>{

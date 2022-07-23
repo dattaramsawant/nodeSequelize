@@ -3,14 +3,13 @@ const db = require('../models');
 const order = require('../utility/order');
 const pagination = require('../utility/pagination');
 
-db.users.hasMany(db.posts,{foreignKey:'user_id',as:'postDetail'});
-// db.users.hasOne(db.posts,{foreignKey:'user_id',as:'postDetail'});
+db.posts.belongsTo(db.users,{foreignKey:'user_id'});
 
-const createUser = async(req,res)=>{
+const createPost = async(req,res)=>{
     try{
-        await db.users.create(req.body)
+        await db.posts.create(req.body)
         return res.status(201).json({
-            message:"User added successfully",
+            message:"Post added successfully",
             status:true
         })
     }catch(error){
@@ -21,14 +20,14 @@ const createUser = async(req,res)=>{
     }
 }
 
-const getUser = async(req,res)=>{
+const getPost = async(req,res)=>{
     try {
         const query=req?.query;
-        const totalCount = await db.users.count()
+        const totalCount = await db.posts.count()
         const paginationResult = pagination(query,totalCount)
         const search = query?.search ? '%'+query.search + '%' : '%'
         const orderResult = order(query)
-        const userData = await db.users.findAll({
+        const postData = await db.posts.findAll({
             ...paginationResult,
             where:{
                 name:{
@@ -37,16 +36,15 @@ const getUser = async(req,res)=>{
             },
             order:orderResult,
             include:[{
-                model:db.posts,
-                as:'postDetail',
-                attributes:['name','title','content']
+                model:db.users,
+                attributes:['name','email']
             }]
         })
         return res.status(200).json({
             message:'Success',
             status:true,
-            data:userData,
-            currentCount:userData.length,
+            data:postData,
+            currentCount:postData.length,
             totalCount:totalCount
         })
     } catch (error) {
@@ -59,5 +57,5 @@ const getUser = async(req,res)=>{
 }
 
 module.exports={
-    createUser,getUser
+    createPost,getPost
 }
